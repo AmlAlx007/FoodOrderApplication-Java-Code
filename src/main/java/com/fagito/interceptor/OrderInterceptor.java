@@ -61,17 +61,3 @@ public class OrderInterceptor implements HandlerInterceptor {
 		
 		
 		return true;
-		/*System.out.println(request);
-		LocalDate localDate = LocalDate.now();
-		DayOfWeek day = localDate.getDayOfWeek();
-		System.out.println("day :" + day);
-		if (day.getValue() == 5) {
-			System.out.println("Website is down");
-			response.getWriter().write("Website is down");
-			return false;
-		} else {
-			return true;
-		}*/
-	}
-
-}
