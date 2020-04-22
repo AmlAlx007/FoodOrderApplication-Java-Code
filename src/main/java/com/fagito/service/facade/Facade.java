@@ -5,21 +5,12 @@ import org.springframework.stereotype.Component;
 
 import com.fagito.service.abstractfactory.CalculateDiscountAbstract;
 import com.fagito.service.abstractfactory.CalculateRewardAbstract;
-import com.fagito.service.abstractfactory.General;
-import com.fagito.service.abstractfactory.Student;
 @Component
 public class Facade {
 
 	public CalculateDiscountAbstract calculateDiscountAbstract;
 	public CalculateRewardAbstract calculateRewardAbstract;
 
-	
-	
-	
-	@Autowired
-	private Student student;
-	@Autowired
-	private General general;
 	@Autowired
 	private AbstractFactory abstractFactory;
 
@@ -33,5 +24,10 @@ public class Facade {
 			break;
 		}
 		return this;
+	}
+	
+	public void calculateDiscount(Float amount,String restaurantId)
+	{
+		
 	}
 }

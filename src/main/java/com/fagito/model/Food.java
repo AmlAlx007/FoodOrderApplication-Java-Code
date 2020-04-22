@@ -14,6 +14,13 @@ public class Food {
 	private String food_name;
 	private float food_price;
 	private String food_cuisine;
+	private int veg_or_nonveg;
+	public int getVeg_or_nonveg() {
+		return veg_or_nonveg;
+	}
+	public void setVeg_or_nonveg(int veg_or_nonveg) {
+		this.veg_or_nonveg = veg_or_nonveg;
+	}
 	public String getFood_id() {
 		return food_id;
 	}
