@@ -1,5 +1,8 @@
 package com.fagito.service.state;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MembershipContext implements State {
 
 	private State membershipState;

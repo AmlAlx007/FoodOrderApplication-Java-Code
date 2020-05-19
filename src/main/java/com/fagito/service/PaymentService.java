@@ -4,12 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fagito.model.PaymentReference;
-import com.fagito.repository.CustomerRepository;
-import com.fagito.repository.OrderRepository;
-import com.fagito.repository.RestaurantRepository;
-import com.fagito.service.abstractfactory.CalculateDiscountAbstract;
-import com.fagito.service.abstractfactory.CalculateRewardAbstract;
-import com.fagito.service.abstractfactory.Customer;
 import com.fagito.service.abstractfactory.General;
 import com.fagito.service.abstractfactory.Student;
 import com.fagito.service.facade.Facade;
@@ -48,20 +42,11 @@ public class PaymentService {
 					payString="PAIDFAGITO"+String.valueOf(payment_form_ui.getAccount_no()).substring(0,5);
 					
 					paymentReference.setPayment_ref(payString);
-					//paymentReferenceRepository.save(paymentReference);
-					
-//					Customer customer=student;
-//					CalculateDiscountAbstract calculateDiscountAbstract=customer.calculateDiscountRate();
-//					calculateDiscountAbstract.calculateDiscountRate(2000,"R100");
-//					
-//					Customer customer1=general;
-//					CalculateRewardAbstract calculateRewardAbstract=customer1.calculateRewardPoints();
-//					calculateRewardAbstract.calculateRewardPoints(2000,"C100");
 					
 					
-					//Facade facade1=facade.FacadeCreateProduct("S","discount");
+					Facade facade1=facade.FacadeCreateProduct("S","discount");
 					
-					//facade1.calculateDiscountAbstract.calculateDiscountRate(2000,"R100");
+					facade1.calculateDiscountAbstract.calculateDiscountRate(2000,"R100");
 					
 					return payString;
 					

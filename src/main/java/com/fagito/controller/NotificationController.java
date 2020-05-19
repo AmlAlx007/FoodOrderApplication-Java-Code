@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fagito.service.NotificationService;
-import com.fagito.service.OrderService;
 import com.fagito.view.UserNotiView;
-import com.fagito.view.Order_Place_UI;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController

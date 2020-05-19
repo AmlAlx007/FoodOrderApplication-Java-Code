@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fagito.model.Customer;
 import com.fagito.model.Notification;
 import com.fagito.model.Order;
 import com.fagito.repository.NotificationRepository;

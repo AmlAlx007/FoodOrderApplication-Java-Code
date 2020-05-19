@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +25,6 @@ import com.fagito.repository.CustomerRepository;
 import com.fagito.repository.SignUpRepository;
 import com.fagito.repository.StudentMailRepository;
 import com.fagito.service.visitor.CustomerElement;
-import com.fagito.service.visitor.ObjectElement;
 import com.fagito.service.visitor.ObjectElementList;
 import com.fagito.service.visitor.ValidationVisitorImpl;
 import com.fagito.view.Login_Output_to_Ui;

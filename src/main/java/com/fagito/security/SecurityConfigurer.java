@@ -1,7 +1,6 @@
 package com.fagito.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -32,8 +30,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		
 		http.cors().and().csrf().disable()
 		// dont authenticate this particular request
-		.authorizeRequests().antMatchers("/api/users/login").permitAll().
-		antMatchers("/api/users/signup").permitAll().
+		.authorizeRequests().antMatchers("/newServlet/User/login").permitAll().
+		antMatchers("/newServlet/User/signup").permitAll().
+		antMatchers("/User/login").permitAll().
+		antMatchers("/User/signup").permitAll().
 		// all other requests need to be authenticated
 		anyRequest().authenticated().and().
 		// make sure we use stateless session; session won't be used to

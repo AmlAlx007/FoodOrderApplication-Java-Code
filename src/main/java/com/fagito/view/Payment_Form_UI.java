@@ -1,7 +1,5 @@
 package com.fagito.view;
 
-import org.springframework.http.ResponseEntity;
-
 public class Payment_Form_UI {
 	
 	private long account_no;

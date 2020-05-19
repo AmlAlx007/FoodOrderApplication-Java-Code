@@ -1,10 +1,6 @@
 
 package com.fagito.service.visitor;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import com.fagito.model.Payment;
 import com.fagito.model.PaymentReference;
 
 public class PaymentElement implements ObjectElement{

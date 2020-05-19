@@ -1,19 +1,13 @@
 package com.fagito.service;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.fagito.model.AdminSeasonalOffers;
 import com.fagito.model.Customer;
 import com.fagito.repository.AdminSeasonalOffersRepository;
@@ -58,7 +52,7 @@ public class AdminService {
 		adminseasonalofferrepo.save(adminseasonaloffers);
 		
 		//observer pattern starts
-		/*customer_list=customerRespository.findAllCustomers();
+		customer_list=customerRespository.findAllCustomers();
 		System.out.println(customer_list);
 		GoldorNotGold gn=new GoldorNotGold();
         gn.setIs_gold(1);
@@ -74,7 +68,7 @@ public class AdminService {
 			GoldCustomer gold_cust=new GoldCustomer((Object)cust_obj,signuprepository);
 			gold_service.Attach(gold_cust);
 		}
-		gold_service.addGoldOrNotGold_list(gn);*/
+		gold_service.addGoldOrNotGold_list(gn);
 		
 		return "Successfully updated Offer";
 	}

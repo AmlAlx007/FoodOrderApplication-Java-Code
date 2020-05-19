@@ -1,20 +1,20 @@
 package com.fagito.interceptor;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@SuppressWarnings("deprecation")
-@Component
-public class OrderInterceptorAppConfig extends WebMvcConfigurerAdapter{
 
-	@Autowired
-	OrderInterceptor orderInterceptor;
+
+@Configuration
+@EnableWebMvc
+public class OrderInterceptorAppConfig implements WebMvcConfigurer {
+
 	
-	@Override
-	   public void addInterceptors(InterceptorRegistry registry) {
-	      registry.addInterceptor(orderInterceptor)
-	      .addPathPatterns("/api/users/signup");
-	   }
+	
+	  @Override public void addInterceptors(InterceptorRegistry registry) {
+	  registry.addInterceptor(new OrderInterceptor())
+	  .addPathPatterns("/User/signup"); }
+	 
 }

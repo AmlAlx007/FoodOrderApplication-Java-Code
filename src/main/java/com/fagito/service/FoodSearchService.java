@@ -8,8 +8,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.fagito.model.Food;
 import com.fagito.model.Menu;
 import com.fagito.model.Restaurant;
@@ -59,17 +61,19 @@ public class FoodSearchService implements FoodSearchServiceInterface{
 		
 		List<Food> food_list=foodRepository.findByName(food_form_ui.getFood_name().toLowerCase());
 		
-		if(!food_list.isEmpty())
+		int val= !food_list.isEmpty() ? 0:1;
+		
+		switch(val)
 		{
-			menu_list=this.getMenuList(food_list);
-			restaurant_list=this.getRestaurantList(menu_list);
+			case 0:	menu_list=this.getMenuList(food_list);
+					restaurant_list=this.getRestaurantList(menu_list);
+			break;
+			case 1: food_list=foodRepository.findAll();
+					menu_list=this.getMenuList(food_list);
+					restaurant_list=this.getRestaurantList(menu_list);
+			break;
 		}
-		else
-		{
-			food_list=foodRepository.findAll();
-			menu_list=this.getMenuList(food_list);
-			restaurant_list=this.getRestaurantList(menu_list);
-		}
+		
 		restaurant_list=get_restaurant_with_distance(restaurant_list,food_form_ui.getLatitude(),food_form_ui.getLongitude(),distance);
 		if(restaurant_list.size()==0)
 			throw new Exception("No Restaurants with Specified Food Name within the limit");

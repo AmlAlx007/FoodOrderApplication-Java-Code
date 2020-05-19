@@ -1,7 +1,5 @@
 package com.fagito.service.factory;
 
-import com.fagito.model.*;
-
 public class GetCustomerFactory {
 
 		public Customer_Discount getCustomer(String user_reference)

@@ -1,10 +1,11 @@
 package com.fagito.validator;
 
 import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.fagito.dto.*;
+import com.fagito.dto.SignUpDTO;
 import com.fagito.exception.UserEmailValidationException;
 import com.fagito.exception.UserPasswordValidationException;
 

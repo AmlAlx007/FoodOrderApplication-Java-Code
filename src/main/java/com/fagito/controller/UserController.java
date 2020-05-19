@@ -1,13 +1,5 @@
 package com.fagito.controller;
 
-import com.fagito.dto.CustomerDTO;
-import com.fagito.dto.LoginDTO;
-import com.fagito.dto.SignUpDTO;
-import com.fagito.security.JwtUtil;
-import com.fagito.service.UserServiceInterface;
-import com.fagito.view.CustomerForm;
-import com.fagito.view.LoginForm;
-import com.fagito.view.Login_Output_to_Ui;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +13,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fagito.dto.CustomerDTO;
+import com.fagito.dto.LoginDTO;
+import com.fagito.dto.SignUpDTO;
+import com.fagito.security.JwtUtil;
+import com.fagito.service.UserServiceInterface;
+import com.fagito.view.CustomerForm;
+import com.fagito.view.LoginForm;
+import com.fagito.view.Login_Output_to_Ui;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/users")
-public class User_Controller{
+@RequestMapping("/User")
+public class UserController{
     //UserService.java
 	@Autowired
 	private UserServiceInterface userServiceInterface;
@@ -34,7 +35,7 @@ public class User_Controller{
     private JwtUtil JWTutility;
 	//user registration controller
     @PostMapping("/signup")
-    public ResponseEntity<?> addUser(@RequestBody CustomerForm customerForm){
+    public ResponseEntity<?> signupUser(@RequestBody CustomerForm customerForm){
     	try
     	{
 	    	CustomerDTO customerDTO=new CustomerDTO();
@@ -52,10 +53,11 @@ public class User_Controller{
     }
     //user login controller
    @PostMapping("/login")
-    public ResponseEntity<?> verifyUser(@RequestBody LoginForm loginForm)
+    public ResponseEntity<?> loginUser(@RequestBody LoginForm loginForm)
     {
     	try
     	{
+    		System.out.println("hello");
     		Login_Output_to_Ui exsist_user;
 	    	LoginDTO loginDTO=new LoginDTO();
 	    	BeanUtils.copyProperties(loginForm, loginDTO);

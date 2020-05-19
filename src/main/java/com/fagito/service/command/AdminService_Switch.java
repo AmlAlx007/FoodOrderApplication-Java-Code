@@ -13,7 +13,6 @@ public class AdminService_Switch {
 	public String switchService(Add_Restaurant_UI add_restaurant_ui) throws Exception
 	{
 		return this.command_Restaurant.execute(add_restaurant_ui);
-
 	}
 
 }

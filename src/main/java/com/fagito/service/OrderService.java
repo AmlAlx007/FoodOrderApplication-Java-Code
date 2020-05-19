@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.fagito.model.Order;
 import com.fagito.model.Order_Item_Record;
 import com.fagito.model.Payment;
@@ -14,20 +15,17 @@ import com.fagito.model.PaymentReference;
 import com.fagito.repository.NotificationRepository;
 import com.fagito.repository.OrderRepository;
 import com.fagito.repository.Order_Item_Record_Repository;
-import com.fagito.repository.PaymentReferenceRepository;
 import com.fagito.repository.PaymentRepository;
-import com.fagito.service.mediator.RestaurantUser;
 import com.fagito.service.mediator.Mediator;
 import com.fagito.service.mediator.MediatorImpl;
 import com.fagito.service.mediator.OrderUser;
+import com.fagito.service.mediator.RestaurantUser;
 import com.fagito.service.mediator.User;
 import com.fagito.service.momento.CareTaker;
 import com.fagito.service.momento.Originator;
-import com.fagito.service.visitor.CustomerElement;
 import com.fagito.service.visitor.ObjectElementList;
 import com.fagito.service.visitor.PaymentElement;
 import com.fagito.service.visitor.ValidationVisitorImpl;
-import com.fagito.validator.PaymentValidator;
 import com.fagito.view.Order_Place_UI;
 import com.fagito.view.Order_Products;
 @Service

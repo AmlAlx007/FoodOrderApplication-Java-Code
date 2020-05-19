@@ -2,16 +2,11 @@ package com.fagito.validator;
 
 import java.util.Date;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.fagito.model.PaymentReference;
 import com.fagito.repository.PaymentReferenceRepository;
-import com.fagito.repository.PaymentRepository;
-import com.fagito.service.OrderService;
 
 @Service
 public class PaymentValidator {
