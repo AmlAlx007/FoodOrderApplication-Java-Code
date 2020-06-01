@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fagito.dto.CustomerDTO;
 import com.fagito.dto.LoginDTO;
 import com.fagito.dto.SignUpDTO;
+import com.fagito.exception.UserWrongCredentialsLogIn;
 import com.fagito.security.JwtUtil;
 import com.fagito.service.UserServiceInterface;
 import com.fagito.view.CustomerForm;
@@ -26,16 +27,21 @@ import com.fagito.view.Login_Output_to_Ui;
 @RestController
 @RequestMapping("/User")
 public class UserController{
-    //UserService.java
 	@Autowired
 	private UserServiceInterface userServiceInterface;
 	@Autowired
-	private AuthenticationManager Authmanager;
+	private AuthenticationManager authManager;
     @Autowired
-    private JwtUtil JWTutility;
-	//user registration controller
+    private JwtUtil jwtUtility;
+	/*
+	 * SignUp Service
+	 * --------------
+	 * Controller for the User Sign Up Module. This let's the user to register with the application.
+	 * 
+	 * Return Type (String) - A success message
+	 */
     @PostMapping("/signup")
-    public ResponseEntity<?> signupUser(@RequestBody CustomerForm customerForm){
+    public ResponseEntity<String> signupUser(@RequestBody CustomerForm customerForm){
     	try
     	{
 	    	CustomerDTO customerDTO=new CustomerDTO();
@@ -51,32 +57,42 @@ public class UserController{
 
 	    
     }
-    //user login controller
+    /*
+     * LogIn Service
+     * -------------
+     * The controller for the user log in functionality. User to login with the credentials.Validation of the credentials happens here.
+     * JWT authentication mechanism is implemented here.
+     * 
+     * Return Type (Login_Output_to_Ui) - includes customer name, customer id and JWT token. 
+     */
    @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginForm loginForm)
     {
     	try
     	{
-    		System.out.println("hello");
-    		Login_Output_to_Ui exsist_user;
+    		Login_Output_to_Ui exsistUser;
 	    	LoginDTO loginDTO=new LoginDTO();
 	    	BeanUtils.copyProperties(loginForm, loginDTO);
-	    	exsist_user = userServiceInterface.verifyUser(loginDTO);
-	    	try
-	    	{
-	    	Authmanager.authenticate(new UsernamePasswordAuthenticationToken(loginForm.getEmail(),loginForm.getPassword()));
-	    	}
-	    	catch(BadCredentialsException ex) {
-	    		throw new Exception("Incorrect user name or password");
-	    	}
+	    	exsistUser = userServiceInterface.verifyUser(loginDTO);
+	    	authenticate(loginForm);
 	    	UserDetails user=userServiceInterface.getuserbyemail(loginForm.getEmail());
-	     String jwttoken=JWTutility.GenerateToken(user);
-	    		 exsist_user.setJwttoken(jwttoken);
-	    	return ResponseEntity.status(200).body(exsist_user);
+	     String jwttoken=jwtUtility.GenerateToken(user);
+	    		 exsistUser.setJwttoken(jwttoken);
+	    	return ResponseEntity.status(200).body(exsistUser);
 	    }
     	catch(Exception e)
     	{
     		return ResponseEntity.status(500).body(e.getMessage());
+    	}
+    }
+    public void authenticate(LoginForm loginForm) throws UserWrongCredentialsLogIn
+    {
+    	try
+    	{
+    		authManager.authenticate(new UsernamePasswordAuthenticationToken(loginForm.getEmail(),loginForm.getPassword()));
+    	}
+    	catch(BadCredentialsException ex) {
+    		throw new UserWrongCredentialsLogIn("Incorrect user name or password");
     	}
     }
 }

@@ -13,7 +13,7 @@ public class OrderInterceptorAppConfig implements WebMvcConfigurer {
 
 	
 	
-	  @Override public void addInterceptors(InterceptorRegistry registry) {
+	   public void addInterceptors(InterceptorRegistry registry) {
 	  registry.addInterceptor(new OrderInterceptor())
 	  .addPathPatterns("/User/signup"); }
 	 

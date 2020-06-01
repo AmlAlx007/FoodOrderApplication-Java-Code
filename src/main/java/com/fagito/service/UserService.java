@@ -71,12 +71,6 @@ public class UserService implements UserServiceInterface
 		int sign_up_id;
 		
 		String user_reference=null;
-		//validating user details
-		/*result=userValidator.validate(signupDTO);
-		if(result!=null)
-		{
-			return result;
-		}*/
 		
 		ObjectElementList objectElementList=new ObjectElementList();
 		objectElementList.addElements(new CustomerElement(signupDTO));

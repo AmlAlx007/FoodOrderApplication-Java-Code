@@ -31,7 +31,7 @@ public class Application {
 	
 	@Bean
 	protected ServletRegistrationBean<HttpServlet> dispatcherServletBean() throws ServletException{
-		ServletRegistrationBean<HttpServlet> dispatcherServlet= new ServletRegistrationBean<>(frontControllerServlet, "/newServlet/*");
+		ServletRegistrationBean<HttpServlet> dispatcherServlet= new ServletRegistrationBean<HttpServlet>(frontControllerServlet, "/newServlet/*");
 		dispatcherServlet.setLoadOnStartup(1);
 		return dispatcherServlet;
 	}
