@@ -51,24 +51,24 @@ public class UserService implements UserServiceInterface
 	
 	public UserDetails getuserbyemail(String emailid) {
 	SignUp user=signupRepository.getUserByEmailid(emailid);
-	User Usedetails=null;
+	User userDetails=null;
 	if(user !=null) {
-		ArrayList<GrantedAuthority> Authority= new ArrayList<>();
-		Usedetails=new User(user.getEmail(),user.getPassword(),Authority);
+		ArrayList<GrantedAuthority> authority= new ArrayList<>();
+		userDetails=new User(user.getEmail(),user.getPassword(),authority);
 		
 	}else {
 		throw new UsernameNotFoundException("No user found in the system");
 	}
-	return Usedetails;
+	return userDetails;
 	}
 	public String addUser(CustomerDTO customerDTO,SignUpDTO signupDTO) throws Exception
 	{
 		
-		Customer customer_model=new Customer();
-		SignUp signup_model=new SignUp();
+		Customer customerModel=new Customer();
+		SignUp signupModel=new SignUp();
 		List<Student_mail> mail_list;
-		int reference_id;
-		int sign_up_id;
+		int referenceId;
+		int signUpId;
 		
 		String user_reference=null;
 		
@@ -113,32 +113,32 @@ public class UserService implements UserServiceInterface
 		String reference_id_string=customerRepository.findLastRecord(user_reference);
 		
 		if(reference_id_string!=null)
-			reference_id=Integer.parseInt(reference_id_string.substring(1));
+			referenceId=Integer.parseInt(reference_id_string.substring(1));
 		else
-			reference_id=99;
+			referenceId=99;
 		
 		
 		String sign_up_id_string=signupRepository.findLastRecord();
 		if(sign_up_id_string!=null)
-			sign_up_id=Integer.parseInt(sign_up_id_string.substring(2));
+			signUpId=Integer.parseInt(sign_up_id_string.substring(2));
 		else
-			sign_up_id=99;
+			signUpId=99;
 
-		customerDTO.setCustomer_id(user_reference+String.valueOf(reference_id+1));
+		customerDTO.setCustomer_id(user_reference+String.valueOf(referenceId+1));
 		customerDTO.setMembership("N");
-		BeanUtils.copyProperties(customerDTO, customer_model);
-		customer_model.setUsertype(user_reference);
-		customer_model.setValidity(null);
+		BeanUtils.copyProperties(customerDTO, customerModel);
+		customerModel.setUsertype(user_reference);
+		customerModel.setValidity(null);
 		
 		
-		signupDTO.setSign_up_id("SU"+String.valueOf(sign_up_id+1));
+		signupDTO.setSign_up_id("SU"+String.valueOf(signUpId+1));
 		signupDTO.setUser_id(customerDTO.getCustomer_id());
 		
-		BeanUtils.copyProperties(signupDTO, signup_model);
+		BeanUtils.copyProperties(signupDTO, signupModel);
 		
 		
-		customerRepository.save(customer_model);
-		signupRepository.save(signup_model);
+		customerRepository.save(customerModel);
+		signupRepository.save(signupModel);
 		return successRegister;
 	}
 	
