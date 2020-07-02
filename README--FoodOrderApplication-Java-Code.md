@@ -36,19 +36,19 @@ Different Object-Oriented Design patterns are used to develop the use cases abov
                         - So for each cusine, there are Vegetarian and Non-Vegeterian items.
                         
                         
-      3. Command Pattern
-      4. Observer Design Pattern
-      5. Iterator pattern
-      6. Mediator Pattern
-      7. Memento Pattern
-      8. State Pattern
-      9. Visitor Pattern
+      3. Command Pattern - to add or delete restaurants - admin functionality
+      4. Observer Design Pattern - to notify the particular set of customers if new offer is available for them.
+      5. Iterator pattern - to iterate through a list of objects of restaurant, food and menu.
+      6. Mediator Pattern - to send messages to a particular set of customers by a user based on some scenario. In here, when an order is placed successfully messages has to be                            send to customer - "Order placed successfully" and restaurant_owner - "to accept the order". 
+      7. Memento Pattern - to retain the state to rollback if any fault occurs while placing the order.
+      8. State Pattern -  In here, 2 membership options are available "gold" and "silver". So for expandability we use state pattern, so in future if a new membership option                              comes up it can be used.
+      9. Visitor Pattern - This pattern is used for the simultaneous validation of objects at a time.
       
                
                
  Architectural Pattern used are :
-     1. Front Controller Pattern
-     2. Microservices
+     1. Front Controller Pattern - Replacing the inbuit dispatcher servlet with a custom made dispatcher servlet.
+     2. Microservices - To predict the delivery time based on the previous data. Basic code is given 
      
  Enterprise Pattern:
      1. DTO -Data Transfer Objects
