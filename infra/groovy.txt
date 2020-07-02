@@ -1,0 +1,40 @@
+pipeline {
+   agent any
+
+   tools {
+      // Install the Maven version configured as "M3" and add it to the path.
+      maven "M3"
+   }
+
+stages {
+    stage ('Get code') {
+        steps {
+        git branch: 'master', url:'https://github.com/amalalexa/FoodOrderApplication-Spring-Boot-Java.git'
+        }
+    }
+    stage ('Build') {
+        steps{
+        sh "mvn -Dmaven.test.failure.ignore=true clean package -f ../pom.xml"
+        }
+    }
+    stage ('Deploy') {
+        steps {
+    sh 'ssh -o StrictHostKeyChecking=no  root@${ip} rm -rf /var/www/temp_deploy/dist/'
+    sh 'ssh -o StrictHostKeyChecking=no  root@${ip} mkdir -p /var/www/temp_deploy'
+    sh 'scp -o StrictHostKeyChecking=no  -r ../target/demo-0.0.1-SNAPSHOT.jar root@${ip}:/var/www/temp_deploy/demo-0.0.1-SNAPSHOT.jar'
+    sh 'ssh -o StrictHostKeyChecking=no  root@${ip} "rm -rf /root/demo-0.0.1-SNAPSHOT.jar && mv /var/www/temp_deploy/demo-0.0.1-SNAPSHOT.jar /root/demo-0.0.1-SNAPSHOT.jar"'
+        }
+    }
+    stage ('Run') {
+        steps {
+    sh "ssh -f  -o StrictHostKeyChecking=no  root@${ip} nohup /root/run.sh run"
+        }
+    }
+    stage ('Check') {
+        steps {
+            sh "ssh  -o StrictHostKeyChecking=no  root@${ip}  /root/run.sh check"
+    
+            }
+        }
+    }
+}
